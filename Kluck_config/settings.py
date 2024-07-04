@@ -60,6 +60,8 @@ CUSTOM_APPS = [
     'drf_spectacular',
     # scheduler
     'django_apscheduler',
+    # django-crontab
+    "django_crontab",
     # 각종 설정값 테이블
     'admin_settings',
     # 관리자 User의 커스텀 테이블
