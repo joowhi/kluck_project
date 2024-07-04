@@ -582,6 +582,7 @@ files = [
 [package.dependencies]
 Django = ">=1.8"
 
+
 [[package]]
 name = "djangorestframework"
 version = "3.15.2"

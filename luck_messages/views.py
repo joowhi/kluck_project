@@ -253,21 +253,22 @@ class AdminDashboard(APIView):
         date = now + timedelta(days=int(term))
         scheduler_date = date.strftime('%Y%m%d')
         today_scheduler = LuckMessage.objects.filter(category='work', luck_date=scheduler_date)
+        date_print = date.strftime('%Y/%m/%d')
 
         if not today_scheduler.exists():
-            return Response(f"{scheduler_date} 생성 오류", status=status.HTTP_404_NOT_FOUND)
+            return Response(f"{date_print} 생성 오류", status=status.HTTP_404_NOT_FOUND)
         else:
             scheduler_status = LuckMessage.objects.filter(category='work', luck_date=scheduler_date, attribute2=0)
             if scheduler_status.exists():
-                return Response(f"{scheduler_date} 생성 중", status=status.HTTP_226_IM_USED)
+                return Response(f"{date_print} 생성 중", status=status.HTTP_226_IM_USED)
             else:
                 success_counts = [get_success_count(item.luck_msg) for item in today_scheduler]
                 if all(count == 31 for count in success_counts):
-                    return Response(f"{scheduler_date} 생성 완료", status=status.HTTP_200_OK)
+                    return Response(f"{date_print} 생성 완료", status=status.HTTP_200_OK)
                 elif any(count == 0 for count in success_counts):
-                    return Response(f"{scheduler_date} 생성 완료", status=status.HTTP_200_OK)
+                    return Response(f"{date_print} 생성 완료", status=status.HTTP_200_OK)
                 else:
-                    return Response(f"{scheduler_date} 일부 생성 완료", status=status.HTTP_206_PARTIAL_CONTENT)
+                    return Response(f"{date_print} 일부 생성 완료", status=status.HTTP_206_PARTIAL_CONTENT)
 
 
 # luck_msg 필드 파싱 함수
