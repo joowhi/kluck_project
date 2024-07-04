@@ -10,9 +10,9 @@ class GptPromptConfig(AppConfig):
     name = "gpt_prompts"
     verbose_name = "GPT API를 이용한 오늘의 한마디 데이터 자동 저장"
 
-    def ready(self):
+    # def ready(self):
         # 스케줄러 초기화 다른 곳으로 옮겨 지연시키기
-        self.initialize_scheduler()
+        # self.initialize_scheduler()
 
     def initialize_scheduler(self):
         from .scheduler import gpt_today_job
