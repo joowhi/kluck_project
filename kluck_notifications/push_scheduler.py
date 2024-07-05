@@ -1,7 +1,6 @@
 import firebase_admin # Firebase Admin SDK 사용
 from firebase_admin import credentials # 서비스 계정 키를 사용하여 Firebase Admin SDK 인증
 from firebase_admin import messaging # FCM 메시지 생성 및 전송
-# from django.utils import timezone
 from datetime import datetime, timedelta
 from .models import DeviceToken
 from luck_messages.models import LuckMessage
