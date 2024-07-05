@@ -91,21 +91,21 @@ def gpt_today_job():
             Zodiac = GptZodiac1(luck_date)
             if Zodiac.status_code == status.HTTP_200_OK:
                 scheduler_count += 8
-                gpt_ai_logger.info("GptZodiac 작업이 실행되었습니다.")
+                gpt_ai_logger.info("GptZodiac1 (쥐~뱀) 작업이 실행되었습니다.")
             else:
-                gpt_ai_logger.info("GptZodiac 작업이 실행되지 않았습니다.")
+                gpt_ai_logger.info("GptZodiac1 (쥐~뱀) 작업이 실행되지 않았습니다.")
         except Exception as e:
-            gpt_ai_logger.error(f"GptZodiac 작업 실행 중 예외가 발생했습니다: {e}")
+            gpt_ai_logger.error(f"GptZodiac1 (쥐~뱀) 작업 실행 중 예외가 발생했습니다: {e}")
 
         try:
             Zodiac = GptZodiac2(luck_date)
             if Zodiac.status_code == status.HTTP_200_OK:
                 scheduler_count += 16
-                gpt_ai_logger.info("GptZodiac 작업이 실행되었습니다.")
+                gpt_ai_logger.info("GptZodiac2 (말~돼지) 작업이 실행되었습니다.")
             else:
-                gpt_ai_logger.info("GptZodiac 작업이 실행되지 않았습니다.")
+                gpt_ai_logger.info("GptZodiac2 (말~돼지) 작업이 실행되지 않았습니다.")
         except Exception as e:
-            gpt_ai_logger.error(f"GptZodiac 작업 실행 중 예외가 발생했습니다: {e}")
+            gpt_ai_logger.error(f"GptZodiac2 (말~돼지) 작업 실행 중 예외가 발생했습니다: {e}")
 
         # 작업이 전부 완료된 뒤 작업 확인 데이터 내용 '완료'로 수정.
         work = LuckMessage.objects.filter(category='work', luck_date=luck_date).first()
