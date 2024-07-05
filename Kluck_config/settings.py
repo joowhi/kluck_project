@@ -57,10 +57,10 @@ CUSTOM_APPS = [
     'rest_framework',
     # JWT Token
     'rest_framework_simplejwt',
-    # 스웨거API
-    'drf_spectacular',
-    # scheduler
-    'django_apscheduler',
+    # # 스웨거API
+    # 'drf_spectacular',
+    # # scheduler
+    # 'django_apscheduler',
     # django-crontab
     "django_crontab",
     # 각종 설정값 테이블
@@ -164,6 +164,12 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'logs/device_token_cron.log'),
             'formatter': 'verbose',
         },
+        'file_gpt_ai': {
+            'level' : 'INFO',
+            'class' : 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/gpt_ai_cron.log'),
+            'formatter': 'verbose',
+        }
     },
     'loggers': {
         'push_jobs': {
@@ -173,6 +179,11 @@ LOGGING = {
         },
         'device_token': {
             'handlers': ['file_device_token'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'gpt_ai': {
+            'handlers': ['file_gpt_ai'],
             'level': 'INFO',
             'propagate': True,
         },
@@ -276,4 +287,5 @@ CRONJOBS = [
     # ('* * * * *', 'kluck_notifications.cron.hi', f'>> {os.path.join(BASE_DIR, "logs/hi_cron.log")} 2>&1'),
     ('* * * * *', 'kluck_notifications.cron.push_cron_job', f'>> {os.path.join(BASE_DIR, "logs/push_cron.log")} 2>&1'), # 매 분마다 실행 -> push_scheduler
     ('0 0 * * *', 'kluck_notifications.cron.remove_inactive_tokens', f'>> {os.path.join(BASE_DIR, "logs/device_token_cron.log")} 2>&1'), # 매일 0시 0분 실행 -> inactive
+    ('* * * * *', 'gpt_prompts.cron.gpt_ai_cron_job', f'>> {os.path.join(BASE_DIR, "logs/gpt_ai_cron.log")} 2>&1'), # 매 분마다 실행 -> gpt_ai_scheduler
 ]
