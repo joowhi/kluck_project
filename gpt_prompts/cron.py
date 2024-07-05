@@ -1,13 +1,12 @@
 from django.utils import timezone
 from datetime import datetime, timedelta
 from .scheduler import gpt_today_job
-from .models import GptPrompt
 from admin_settings.models import AdminSetting
 import logging
 import pytz
 
 # gpt ai 로거
-gpt_ai_logger = logging.getLogger('gpt_ai_jobs')
+gpt_ai_logger = logging.getLogger('gpt_ai')
 
 # GPT AI를 이용해 운세 받아오기
 def gpt_ai_cron_job():
@@ -19,10 +18,6 @@ def gpt_ai_cron_job():
     # DB에서 term_time, term_date 가져오기
     try:
         term_time = AdminSetting.objects.first().term_time
-        # # 숫자 네자리를 문자열로 변환하여 분리
-        # scheduler_time_str = str(scheduler_time).zfill(4)  # 네자리로 맞추기 위해 zfill 사용
-        # hour = int(scheduler_time_str[:2])  # 앞 두 자리
-        # minute = int(scheduler_time_str[2:])  # 뒤 두 자리
     except AttributeError:
         term_time = "0110"  # 기본값 오전 1시 10분
         

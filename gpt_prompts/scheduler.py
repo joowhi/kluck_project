@@ -8,9 +8,6 @@ from datetime import datetime, timedelta
 import logging
 import os
 
-# Django 프로젝트의 루트 디렉토리 경로
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # gpt_ai 로거 가져오기
 gpt_ai_logger = logging.getLogger('gpt_ai')
 
