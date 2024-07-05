@@ -36,8 +36,8 @@ def push_cron_job():
             push_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {push_time} => 푸시 알림이 발송될 시간입니다.")
         except Exception as e:
             push_logger.error(f"푸시 알림 전송 중 오류 발생: {e}")
-    else:
-        push_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {push_time} => 푸시 알림이 발송될 시간이 아닙니다.")
+    # else:
+    #     push_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {push_time} => 푸시 알림이 발송될 시간이 아닙니다.")
 
 
 # 비활성화 토큰 삭제하기

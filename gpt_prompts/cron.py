@@ -33,5 +33,5 @@ def gpt_ai_cron_job():
             gpt_ai_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {term_time} => Gpt AI가 동작할 시간입니다.")
         except Exception as e:
             gpt_ai_logger.error(f"Gpt AI 작동 중 오류 발생: {e}")
-    else:
-        gpt_ai_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {term_time} => Gpt AI가 동작할 시간이 아닙니다.")
+    # else:
+    #     gpt_ai_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {term_time} => Gpt AI가 동작할 시간이 아닙니다.")
