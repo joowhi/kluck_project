@@ -11,10 +11,6 @@ push_logger = logging.getLogger('push_jobs')
 # 디바이스 토큰
 device_token_logger = logging.getLogger('device_token')
 
-# crontab test
-# def hi():
-#     device_token_logger.info("hi")
-
 # 푸시 알림 발송
 def push_cron_job():
     """

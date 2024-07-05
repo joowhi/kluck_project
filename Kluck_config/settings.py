@@ -137,23 +137,48 @@ DATABASES = {
         }
     }
 }
+#로그 관련 설정
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file_push': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/push_cron.log'),
+            'formatter': 'verbose',
+        },
+        'file_device_token': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/device_token_cron.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'push_jobs': {
+            'handlers': ['file_push'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'device_token': {
+            'handlers': ['file_device_token'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
-# 테이블 생성과 관리자 로그인 관련 SQL확인을 위한 설정
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.db.backends': {
-#             'level': 'DEBUG',
-#             'handlers': ['console'],
-#         },
-#     },
-# }
 
 
 # Password validation
