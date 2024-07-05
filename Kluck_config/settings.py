@@ -57,8 +57,8 @@ CUSTOM_APPS = [
     'rest_framework',
     # JWT Token
     'rest_framework_simplejwt',
-    # # 스웨거API
-    # 'drf_spectacular',
+    # 스웨거API
+    'drf_spectacular',
     # # scheduler
     # 'django_apscheduler',
     # django-crontab
