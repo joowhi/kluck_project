@@ -24,7 +24,7 @@ except Exception as e:
     raise
 
 # push 보내는 함수
-def send_push_notifications():
+def send_push_android():
     try:
         # DB에서 디바이스 토큰 가져오기
         registration_tokens = list(DeviceToken.objects.values_list('token', flat=True))
