@@ -1,6 +1,6 @@
 from django.utils import timezone
 from datetime import datetime, timedelta
-from .push_scheduler import send_push_notifications
+from .push_scheduler import send_push_android, send_push_ios
 from .models import DeviceToken
 from admin_settings.models import AdminSetting
 import logging
@@ -22,7 +22,7 @@ def push_cron_job():
     try:
         push_time = AdminSetting.objects.first().push_time
     except AttributeError:
-        push_time = "0900" # 기본값 오전 9시
+        push_time = "0800" # 기본값 오전 8시
 
     # 현재 시각
     current_time = datetime.now(pytz.timezone('Asia/Seoul'))
@@ -32,7 +32,8 @@ def push_cron_job():
     # 현재 시각과 push_time이 같으면 푸시 발송
     if current_time_str == push_time:
         try:
-            send_push_notifications()
+            send_push_android()
+            send_push_ios()
             push_logger.info(f"현재 시각: {current_time_str} | 발송 시간: {push_time} => 푸시 알림이 발송될 시간입니다.")
         except Exception as e:
             push_logger.error(f"푸시 알림 전송 중 오류 발생: {e}")
