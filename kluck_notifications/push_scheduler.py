@@ -57,6 +57,7 @@ def send_push_android():
             push_logger.info(f"오늘의 운세 메시지가 존재하지 않습니다. today_luck_msg: {today_luck_msg} => 임의의 내용 작성: {body}")
 
         for i in range(0, len(android_registration_tokens)):
+            push_logger.info(f"Android 푸시용 리스트값: {android_registration_tokens[i]}")
             # 푸시 알림 (notification -> 백그라운드)
             message = messaging.MulticastMessage( # 여러 기기에 메시지 전송
                 notification=messaging.Notification(
@@ -76,6 +77,7 @@ def send_push_android():
                     )
                 ),
                 tokens = android_registration_tokens[0][i], # 여러 개의 등록 토큰 리스트
+
             )
 
             # Firebase로 푸시 알림 전송
