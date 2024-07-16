@@ -33,7 +33,7 @@ def send_push_android():
         #푸시 분산 발송용 리스트 생성
         android_registration_tokens = []
         #한번에 푸시 발송 할 수량 설정
-        push_cnt = 1
+        push_cnt = 12
         #푸시를 발송하는 단위 시간
         push_term = 6
 
@@ -76,12 +76,12 @@ def send_push_android():
                         sound='default',
                     )
                 ),
-                tokens = android_registration_tokens[0][i], # 여러 개의 등록 토큰 리스트
+                tokens = android_registration_tokens[i], # 여러 개의 등록 토큰 리스트
 
             )
 
             # Firebase로 푸시 알림 전송
-            response = messaging.send_multicast(message)
+            response = messaging.send_each_for_multicast(message)
             push_logger.info(f"Android 푸시 알림 발송 성공. Response_num[{i}]: 'title' = {title}, 'body' = {body}")
 
             time.sleep(push_term)
