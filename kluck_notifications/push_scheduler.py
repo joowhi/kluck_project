@@ -7,6 +7,7 @@ from luck_messages.models import LuckMessage
 import logging
 import os
 import time
+import kluck_env.env_settings as env
 
 # Django 프로젝트의 루트 디렉토리 경로
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,10 +33,10 @@ def send_push_android():
 
         #푸시 분산 발송용 리스트 생성
         android_registration_tokens = []
-        #한번에 푸시 발송 할 수량 설정
-        push_cnt = 12
-        #푸시를 발송하는 단위 시간
-        push_term = 6
+        #한번에 푸시 발송 할 수량 설정 : kluck_env.env_settings.py
+        push_cnt = env.push_cnt
+        #푸시를 발송하는 단위 시간 : kluck_env.env_settings.py
+        push_term = env.push_term
 
         #전체 토큰을 발송량에 따라 분산 저장
         for i in range(0, len(android_registration_tokens_all), push_cnt):
